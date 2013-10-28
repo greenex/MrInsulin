@@ -85,6 +85,7 @@
 			function checkuser(tx) {
 				//alert("check user!");
 				//tx.executeSql('DROP TABLE IF EXISTS user_info;');
+				//tx.executeSql('DROP TABLE IF EXISTS insulin_sizes;');
 				tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='user_info'", [], function(tx, result) {
 					if (result.rows.length == 0) {
 						//	alert("not excet");
@@ -121,7 +122,6 @@
 
 			function view_size() {
 				db.transaction(getsizes, errorCB);
-				var data='';
 			}
 
 			function getsizes(tx) {
@@ -133,7 +133,7 @@
 
 			function querysizes(tx, result) {
 				//alert("goo");
-				$('#viewallsizes').empty();
+				$('#viewallsizes li').remove();
 				$('#texttime').empty();
 				var myitems = new Array();
 				for (var i = 0; i < result.rows.length; i++) {
@@ -176,11 +176,12 @@
 					}
 				  fruits[i]
 				}
+				$("#viewallsizes").trigger('create');
+				$('#viewallsizes').listview('refresh');
 				$('#texttime').append('<option value="7">وقت اخر</option>');
 				$("#texttime").trigger('create');
 				$('#texttime').content('refresh');
-				$("#viewallsizes").trigger('create');
-				$('#viewallsizes').listview('refresh');
+				
 					
 			}
 
