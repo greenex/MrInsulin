@@ -84,8 +84,8 @@
 
 			function checkuser(tx) {
 				//alert("check user!");
-				//tx.executeSql('DROP TABLE IF EXISTS user_info;');
-				//tx.executeSql('DROP TABLE IF EXISTS insulin_sizes;');
+				tx.executeSql('DROP TABLE IF EXISTS user_info;');
+				tx.executeSql('DROP TABLE IF EXISTS insulin_sizes;');
 				tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='user_info'", [], function(tx, result) {
 					if (result.rows.length == 0) {
 						//	alert("not excet");
@@ -209,37 +209,37 @@
 			<div data-role="content">
 				<table width="100%" style="display: none;" id="info">
 					<tr>
-						<td>الاسم</td><td>
+						<td>الاسم :</td><td>
 						<input type="text" id="name" />
 						</td>
 					</tr>
 					<tr>
-						<td>العمر</td><td>
+						<td>العمر :</td><td>
 						<input type="text" id="age" />
 						</td>
 					</tr>
 					<tr>
-						<td>الوزن</td><td>
+						<td>الوزن :</td><td>
 						<input type="text" id="weight" />
 						</td>
 					</tr>
 					<tr>
-						<td>الطول</td><td>
+						<td>الطول :</td><td>
 						<input type="text" id="length" />
 						</td>
 					</tr>
 					<tr>
-						<td>البريد الالكتروني</td><td>
+						<td>البريد الالكتروني :</td><td>
 						<input type="text" id="email" />
 						</td>
 					</tr>
 					<tr>
-						<td>كلمة السر </td><td>
+						<td>رقم الجوال : </td><td>
 						<input type="text" id="pass" />
 						</td>
 					</tr>
 					<tr>
-						<td>البريد الالكتروني للدكتور</td><td>
+						<td>البريد الالكتروني للدكتور :</td><td>
 						<input type="text" id="dr_email" />
 						</td>
 					</tr>
