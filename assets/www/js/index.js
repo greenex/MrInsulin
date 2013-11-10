@@ -8,6 +8,7 @@ var detetedid = 0;
 var msgtextdata = '';
 var dr_email = '';
 var detetedalarmid=0;
+var editalarmid=0;
 hostname = "naemhd.webfactional.com";
 function onDeviceReady() {
 	db.transaction(checkuser, errorCB);
@@ -57,11 +58,17 @@ function get_info() {
 
 	db.transaction(get_info_db, errorCB);
 }
-
+function get_edited_alarm(id) {
+	editalarmid=id;
+	
+	db.transaction(get_alarm_info_db, errorCB);
+}
 function get_info_db(tx) {
 	tx.executeSql('SELECT * FROM user_info', [], geteditinfo, errorCB);
 }
-
+function get_alarm_info_db(tx) {
+	tx.executeSql('SELECT * FROM alarm where id='+editalarmid, [], geteditalarminfo, errorCB);
+}
 function geteditinfo(tx, result) {
 	
 	$("#nameedit").val(result.rows.item(0).name);
@@ -71,6 +78,14 @@ function geteditinfo(tx, result) {
 	$("#emailedit").val(result.rows.item(0).email);
 	$("#passedit").val(result.rows.item(0).phone);
 	$("#dr_emailedit").val(result.rows.item(0).dr_email);
+
+}
+
+function geteditalarminfo(tx, result) {
+	
+	$("#subtextedit").val(result.rows.item(0).note);
+	$("#textinput4edit").val(result.rows.item(0).time);
+	
 
 }
 
@@ -157,6 +172,26 @@ function get_date() {
 function addalarm() {
 
 	db.transaction(addalarmdb, errorCB);
+}
+function editalarm() {
+
+	db.transaction(editalarmdb, errorCB);
+}
+function editalarmdb(tx) {
+	//alert($("#texttime").val());	
+	if ($("#subtextedit").val() == "" || $("#textinput4edit").val() == "") {
+		alert("الرجاء ادخال جميع البيانات المطلوبة");
+	} else {
+
+		
+		
+		tx.executeSql('update alarm set note="' + $("#subtextedit").val() + '",time="' + $("#textinput4edit").val() + '" where id='+editalarmid);
+		view_alarm();
+		alert("تم تعديل البيانات بنجاح");
+		
+		
+
+	}
 }
 
 function addalarmdb(tx) {
@@ -386,7 +421,7 @@ function queryalarm(tx, result) {
 	
 	for (var i = 0; i < result.rows.length; i++) {
 
-		$('#viewallalarms').append('<li id="alarm' + result.rows.item(i).id + '"><a href="#"><table width="100%"><tr><td><h3>' + result.rows.item(i).note + '</h3></td><td><h3>' + result.rows.item(i).time + '</h3></td><td><a href="javascript:deletealarm(' + result.rows.item(i).id + ');"  data-role="button" data-icon="delete" data-iconpos="notext">Delete</a></td></tr></table></a></li>');
+		$('#viewallalarms').append('<li id="alarm' + result.rows.item(i).id + '"><a href="#editalarmform" onclick="get_edited_alarm(' + result.rows.item(i).id + ')"><table width="100%"><tr><td><h2>' + result.rows.item(i).time + '</h2></td><td rowspan="2" style="float:left;"><a href="javascript:deletealarm(' + result.rows.item(i).id + ');"  data-role="button" data-icon="delete" data-iconpos="notext">Delete</a></td></tr><tr><td>' + result.rows.item(i).note + '</td></tr></table></a></li>');
 
 	}
 	

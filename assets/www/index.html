@@ -241,8 +241,8 @@
 		
 		<div id="newalarm" data-role="page">
 			<header data-role="header">
-				<h1>القياسات</h1>
-				<a href="#home" data-icon="back" data-iconpos="notext">المنبة</a>
+				<h1>المنبة</h1>
+				<a href="#home" data-icon="back" data-iconpos="notext">الرئيسي</a>
 				<nav data-role="navbar">
 					<ul>
 						<li>
@@ -276,10 +276,38 @@
 			</div>
 		</div>
 
+	<div id="editalarmform" data-role="page">
+			<header data-role="header">
+				<h1>تعديل المنبة</h1>
+				<a href="#allalarmsdata" data-icon="back" data-iconpos="notext">المنبة</a>
+				
+			</header>
+			<div data-role="content">
+				<div id='addnewsize'>
+					<table width="100%">
+						<tr>
+							<td>العنوان</td><td>
+							<input type="text" id="subtextedit" />
+							</td>
+						</tr>
+						<tr>
+							<td>الوقت</td><td>
+							<input type="text" id = "textinput4edit" class="nativetimepicker" readonly value = ""/></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+							<input type="button" onclick="editalarm();" value="تعديل" />
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
 		<div id="allalarmsdata" data-role="page">
 			<header data-role="header">
-				<h1>القياسات</h1>
-				<a href="#home" data-icon="back" data-iconpos="notext">القياسات</a>
+				<h1>المنبة</h1>
+				<a href="#home" data-icon="back" data-iconpos="notext">الرئيسي</a>
 				<nav data-role="navbar">
 					<ul>
 						<li>
