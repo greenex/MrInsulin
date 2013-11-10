@@ -16,7 +16,8 @@
 		<script src="js/EmailComposer.js"></script>
 		<script src="js/index.js"></script>
 		<script type="text/javascript" charset="utf-8"></script>
-
+		 <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+		 <script type="text/javascript" charset="utf-8" src="index.js"></script>
 	</head>
 	<body>
 
@@ -67,13 +68,12 @@
 						</td>
 					</tr>
 				</table>
-				<a href="javascript:testemail()" target="_blank">send email</a>
 				<table width="100%" class="tablestyle"  style="display: none;" id="icons">
 					<tr>
 						<td class="iconstyle"><a href="#newsize" class="linktag" onclick="view_size()"><img src="icons/chart.png" width="60"  />
 						<br />
 						قياسات السكر</a></td>
-						<td class="iconstyle"><a href="#newsize" class="linktag"><img src="icons/Alarm.png" width="60" />
+						<td class="iconstyle"><a href="#newalarm" class="linktag" onclick="view_alarm()"><img src="icons/Alarm.png" width="60" />
 						<br />
 						المنبة</a></td>
 						<td class="iconstyle"><a href="#news" class="linktag"><img src="icons/food.png" width="60"  />
@@ -95,12 +95,67 @@
 						<td class="iconstyle"><a href="#news" class="linktag"><img src="icons/contact.png" width="60"  />
 						<br />
 						تواصل معنا </a></td>
+					
+						<td class="iconstyle"><a href="#userinfo" class="linktag" onclick="get_info()"><img src="icons/userinfo.png" width="60"  />
+						<br />
+						معلومات المستخدم</a></td>
 					</tr>
 
 				</table>
 			</div>
 		</div>
-
+		
+		<div data-role="page" id="userinfo">
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<h1>معلومات المستخدم</h1>
+				<a href="#home" data-icon="back" data-iconpos="notext">الرئيسي</a>
+			</div>
+			<div data-role="content">
+				<table width="100%" id="info">
+					<tr>
+						<td>الاسم :</td><td>
+						<input type="text" id="nameedit" />
+						</td>
+					</tr>
+					<tr>
+						<td>العمر :</td><td>
+						<input type="text" id="ageedit" />
+						</td>
+					</tr>
+					<tr>
+						<td>الوزن :</td><td>
+						<input type="text" id="weightedit" />
+						</td>
+					</tr>
+					<tr>
+						<td>الطول :</td><td>
+						<input type="text" id="lengthedit" />
+						</td>
+					</tr>
+					<tr>
+						<td>البريد الالكتروني :</td><td>
+						<input type="text" id="emailedit" />
+						</td>
+					</tr>
+					<tr>
+						<td>رقم الجوال : </td><td>
+						<input type="text" id="passedit" />
+						</td>
+					</tr>
+					<tr>
+						<td>البريد الالكتروني للدكتور :</td><td>
+						<input type="text" id="dr_emailedit" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						<input type="button"  id="add" onclick="editinfo();" value="تعديل"/>
+						</td>
+					</tr>
+				</table>
+				
+			</div>
+		</div>
 		<div id="newsize" data-role="page">
 			<header data-role="header">
 				<h1>القياسات</h1>
@@ -173,10 +228,122 @@
 				</ul>
 			</div>
 			<div data-role="footer" class="ui-bar">
-	<a href="index.html" data-role="button" data-icon="plus">Add</a>
-	<a href="index.html" data-role="button" data-icon="arrow-u">Up</a>
-	<a href="index.html" data-role="button" data-icon="arrow-d">Down</a>
+				<table width="100%"><tr>
+	<td><select id='sendtype'>
+		<option value="1">جميع التسجيلات</option>
+		<option value="2">الغير مرسلة</option>
+	</select></td>
+	<td><a href="#" onclick="senddata();" data-role="button" data-icon="send">ارسال</a></td>
+	<td><a href="#" data-role="button" data-icon="delete" onclick="deleteallsizes();">حذف الكل</a></td>
+	</tr></table>
 </div>
 		</div>
+		
+		<div id="newalarm" data-role="page">
+			<header data-role="header">
+				<h1>القياسات</h1>
+				<a href="#home" data-icon="back" data-iconpos="notext">المنبة</a>
+				<nav data-role="navbar">
+					<ul>
+						<li>
+							<a href="#newalarm">جديد</a>
+						</li>
+						<li>
+							<a href="#allalarmsdata">عرض</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<div data-role="content">
+				<div id='addnewsize'>
+					<table width="100%">
+						<tr>
+							<td>العنوان</td><td>
+							<input type="text" id="subtext" />
+							</td>
+						</tr>
+						<tr>
+							<td>الوقت</td><td>
+							<input type="text" id = "textinput4" class="nativetimepicker" readonly value = ""/></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+							<input type="button" onclick="addalarm();" value="حفظ" />
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div id="allalarmsdata" data-role="page">
+			<header data-role="header">
+				<h1>القياسات</h1>
+				<a href="#home" data-icon="back" data-iconpos="notext">القياسات</a>
+				<nav data-role="navbar">
+					<ul>
+						<li>
+							<a href="#newalarm">جديد</a>
+						</li>
+						<li>
+							<a href="#allalarmsdata">عرض</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<div data-role="content">
+				<ul data-role="listview"   data-filter="true" id='viewallalarms'>
+					<li>
+						tedt
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+		<script type = "text/javascript">
+$(document).ready(function(){
+    $('.nativedatepicker').focus(function(event) {
+            var currentField = $(this);
+            var myNewDate = new Date();
+
+            // Same handling for iPhone and Android
+            window.plugins.datePicker.show({
+                date : myNewDate,
+                mode : 'date', // date or time or blank for both
+                allowOldDates : true
+            }, function(returnDate) {
+                var newDate = new Date(returnDate);
+                var newString = newDate.toString();
+                newString = newString.substring(0,15);
+                currentField.val(newString);
+                // This fixes the problem you mention at the bottom of this script with it not working a second/third time around, because it is in focus.
+                currentField.blur();
+            });
+        });
+       $('.nativetimepicker').focus(function(event) {
+		var currentField = $(this);
+		var time = currentField.val();
+		var myNewTime = new Date();
+
+		myNewTime.setHours(time.substr(0, 2));
+		myNewTime.setMinutes(time.substr(3, 2));
+
+		// Same handling for iPhone and Android
+		plugins.datePicker.show({
+			date : myNewTime,
+			mode : 'time', // date or time or blank for both
+			allowOldDates : true
+		}, function(returnDate) {
+		  // returnDate is generated by .toLocaleString() in Java so it will be relative to the current time zone
+			var newDate = new Date(returnDate);
+			var newString = newDate.toString();
+            newString = newString.substring(16,21);
+            currentField.val(newString);
+
+			currentField.blur();
+		});
+	});
+});
+ </script>
 	</body>
 </html>

@@ -104,5 +104,6 @@
     <!-- Deprecated plugins element. Remove in 3.0 -->
     <plugins>
        <plugin name="EmailComposer" value="com.insulin.EmailComposer"/>
+       <plugin name="DatePickerPlugin" value="com.insulin.DatePickerPlugin"/>
          </plugins>
 </widget>
