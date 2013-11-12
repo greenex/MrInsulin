@@ -7,8 +7,8 @@ var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
 var detetedid = 0;
 var msgtextdata = '';
 var dr_email = '';
-var detetedalarmid=0;
-var editalarmid=0;
+var detetedalarmid = 0;
+var editalarmid = 0;
 hostname = "naemhd.webfactional.com";
 function onDeviceReady() {
 	db.transaction(checkuser, errorCB);
@@ -58,19 +58,23 @@ function get_info() {
 
 	db.transaction(get_info_db, errorCB);
 }
+
 function get_edited_alarm(id) {
-	editalarmid=id;
-	
+	editalarmid = id;
+
 	db.transaction(get_alarm_info_db, errorCB);
 }
+
 function get_info_db(tx) {
 	tx.executeSql('SELECT * FROM user_info', [], geteditinfo, errorCB);
 }
+
 function get_alarm_info_db(tx) {
-	tx.executeSql('SELECT * FROM alarm where id='+editalarmid, [], geteditalarminfo, errorCB);
+	tx.executeSql('SELECT * FROM alarm where id=' + editalarmid, [], geteditalarminfo, errorCB);
 }
+
 function geteditinfo(tx, result) {
-	
+
 	$("#nameedit").val(result.rows.item(0).name);
 	$("#ageedit").val(result.rows.item(0).age);
 	$("#weightedit").val(result.rows.item(0).length);
@@ -82,10 +86,9 @@ function geteditinfo(tx, result) {
 }
 
 function geteditalarminfo(tx, result) {
-	
+
 	$("#subtextedit").val(result.rows.item(0).note);
 	$("#textinput4edit").val(result.rows.item(0).time);
-	
 
 }
 
@@ -116,7 +119,7 @@ function querysend(tx, result) {
 		}
 		msgtextdata += '<tr><td><h3>' + result.rows.item(i).date + '</h3></td><td><h3>' + timedata + '</h3></td><td><h3>' + result.rows.item(i).size + '</h3></td><td>' + result.rows.item(i).info + '</td></tr>';
 		//window.plugins.emailComposer.showEmailComposerWithCallback(null, "Mr.Insulin",textdata, ["mkhader88@gmail.com"], [], [], true, []);
-		alert(result.rows.item(i).sent);
+
 		//alert(result.rows.item(i).time);
 		//s += "<li><a href='edit.html?id=" + results.rows.item(i).id + "'>" + results.rows.item(i).title + "</a></li>";
 	}
@@ -173,75 +176,120 @@ function addalarm() {
 
 	db.transaction(addalarmdb, errorCB);
 }
+
 function editalarm() {
 
 	db.transaction(editalarmdb, errorCB);
 }
+
 function editalarmdb(tx) {
-	//alert($("#texttime").val());	
+	//alert($("#texttime").val());
 	if ($("#subtextedit").val() == "" || $("#textinput4edit").val() == "") {
 		alert("الرجاء ادخال جميع البيانات المطلوبة");
 	} else {
 
-		
-		
-		tx.executeSql('update alarm set note="' + $("#subtextedit").val() + '",time="' + $("#textinput4edit").val() + '" where id='+editalarmid);
+		tx.executeSql('update alarm set note="' + $("#subtextedit").val() + '",time="' + $("#textinput4edit").val() + '" where id=' + editalarmid);
 		view_alarm();
 		alert("تم تعديل البيانات بنجاح");
-		
-		
 
 	}
 }
 
 function addalarmdb(tx) {
-	//alert($("#texttime").val());	
+	//alert($("#texttime").val());
 	if ($("#subtext").val() == "" || $("#textinput4").val() == "") {
 		alert("الرجاء ادخال جميع البيانات المطلوبة");
 	} else {
 
-		
-		
 		tx.executeSql('INSERT INTO alarm (note,time) VALUES ("' + $("#subtext").val() + '","' + $("#textinput4").val() + '")');
 		view_alarm();
 		alert("تم ادخال البيانات بنجاح");
 		$("#subtext").val('');
 		$("#textinput4").val('');
-		
 
 	}
 }
 
 function addsizedb(tx) {
 	//alert($("#texttime").val());
+	var goo = true;
 	if ($("#textsize").val() == "" || $("#texttime").val() == "" || $("#cominnts").val() == "") {
 		alert("الرجاء ادخال جميع البيانات المطلوبة");
-	} else {
-
-		today = get_date();
-		var datasize = parseInt($("#textsize").val());
-		tx.executeSql('INSERT INTO insulin_sizes (size,time,info,sent,date) VALUES ("' + $("#textsize").val() + '","' + $("#texttime").val() + '","' + $("#cominnts").val() + '","0","' + today + '")');
-		view_size();
-		alert("تم ادخال البيانات بنجاح");
-		$("#textsize").val('');
-		$("#cominnts").val('');
-		if (datasize > 240) {
-			alert("نسبة السكر مرتفعة");
+	}
+	var passedit = $("#textsize").val();
+	if (isNaN(passedit) && goo) {
+		alert('الرجاء ادخال القياس بشكل صحيح');
+		goo = false;
+	}
+	if (goo) {
+		var result = confirm("هل انت  متأكد ؟ القياس  "+$("#textsize").val());
+		if (result == true) {
+			today = get_date();
+			var datasize = parseInt($("#textsize").val());
+			tx.executeSql('INSERT INTO insulin_sizes (size,time,info,sent,date) VALUES ("' + $("#textsize").val() + '","' + $("#texttime").val() + '","' + $("#cominnts").val() + '","0","' + today + '")');
+			view_size();
+			alert("تم ادخال البيانات بنجاح");
+			$("#textsize").val('');
+			$("#cominnts").val('');
+			if (datasize > 240) {
+				alert("نسبة السكر مرتفعة");
+			}
+			if (datasize < 80) {
+				alert("نسبة السكر منخفضة");
+			}
 		}
-		if (datasize < 80) {
-			alert("نسبة السكر منخفضة");
-		}
-
 	}
 }
 
 function populateDB(tx) {
 	//alert($("#name").val());
 	//alert($("#name").val()+" "+ $("#age").val()+" "+ $("#weight").val()+" "+$("#length").val()+" "+$("#email").val()+" "+$("#dr_email").val()+" "+$("#pass").val());
-
+	var goo = true;
 	if ($("#name").val() == "" || $("#age").val() == "" || $("#weight").val() == "" || $("#length").val() == "" || $("#email").val() == "" || $("#pass").val() == "") {
 		alert("الرجاء ادخال جميع البيانات المطلوبة");
-	} else {
+		goo = false;
+	}
+
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+	if (!filter.test($("#email").val()) && goo) {
+		alert('الرجاء ادخال بريد الكتروني صحيح');
+		goo = false;
+	}
+
+	var age = $("#age").val();
+
+	if (isNaN(age) && goo) {
+		alert('الرجاء ادخال العمر بشكل صحيح');
+		goo = false;
+	}
+	var weight = $("#weight").val();
+
+	if (isNaN(weight) && goo) {
+		alert('الرجاء ادخال الوزن بشكل صحيح');
+		goo = false;
+	}
+	var length = $("#length").val();
+
+	if (isNaN(length) && goo) {
+		alert('الرجاء ادخال الطول بشكل صحيح');
+		goo = false;
+	}
+	var passedit = $("#pass").val();
+	if (isNaN(passedit) && goo) {
+		alert('الرجاء ادخال المحمول بشكل صحيح');
+		goo = false;
+	}
+	if ($("#dr_email").val() != "") {
+		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+		if (!filter.test($("#dr_email").val()) && goo) {
+			alert('الرجاء ادخال بريد الكتروني للدكتور صحيح');
+			goo = false;
+		}
+	}
+
+	if (goo) {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS alarm (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , note TEXT , time TEXT)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS insulin_sizes (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , size TEXT , time TEXT , info TEXT , sent TEXT, date TEXT)');
 		tx.executeSql('CREATE TABLE IF NOT EXISTS user_info (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , name TEXT , age TEXT , length TEXT , weight TEXT , email TEXT , dr_email TEXT , phone TEXT)');
@@ -260,10 +308,52 @@ function editinfo() {
 function editinfo_db(tx) {
 	//alert($("#name").val());
 	//alert($("#name").val()+" "+ $("#age").val()+" "+ $("#weight").val()+" "+$("#length").val()+" "+$("#email").val()+" "+$("#dr_email").val()+" "+$("#pass").val());
-
+	var goo = true;
 	if ($("#nameedit").val() == "" || $("#ageedit").val() == "" || $("#weightedit").val() == "" || $("#lengthedit").val() == "" || $("#emailedit").val() == "" || $("#passedit").val() == "") {
 		alert("الرجاء ادخال جميع البيانات المطلوبة");
-	} else {
+		goo = false;
+	}
+
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+	if (!filter.test($("#emailedit").val()) && goo) {
+		alert('الرجاء ادخال بريد الكتروني صحيح');
+		goo = false;
+	}
+
+	var age = $("#ageedit").val();
+
+	if (isNaN(age) && goo) {
+		alert('الرجاء ادخال العمر بشكل صحيح');
+		goo = false;
+	}
+	var weight = $("#weightedit").val();
+
+	if (isNaN(weight) && goo) {
+		alert('الرجاء ادخال الوزن بشكل صحيح');
+		goo = false;
+	}
+	var length = $("#lengthedit").val();
+
+	if (isNaN(length) && goo) {
+		alert('الرجاء ادخال الطول بشكل صحيح');
+		goo = false;
+	}
+	var passedit = $("#passedit").val();
+	if (isNaN(passedit) && goo) {
+		alert('الرجاء ادخال المحمول بشكل صحيح');
+		goo = false;
+	}
+
+	if ($("#dr_emailedit").val() != "") {
+		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+		if (!filter.test($("#dr_emailedit").val()) && goo) {
+			alert('الرجاء ادخال بريد الكتروني للدكتور صحيح');
+			goo = false;
+		}
+	}
+	if (goo) {
 		tx.executeSql('update user_info set name="' + $("#nameedit").val() + '", age="' + $("#ageedit").val() + '", weight="' + $("#weightedit").val() + '", length="' + $("#lengthedit").val() + '", email="' + $("#emailedit").val() + '", dr_email="' + $("#dr_emailedit").val() + '", phone="' + $("#passedit").val() + '"');
 		alert("تم تعديل البيانات بنجاح");
 	}
@@ -317,6 +407,7 @@ function getsizes(tx) {
 	tx.executeSql('SELECT * FROM insulin_sizes', [], querysizes, errorCB);
 
 }
+
 function view_alarm() {
 	db.transaction(getalarm, errorCB);
 }
@@ -327,6 +418,7 @@ function getalarm(tx) {
 	tx.executeSql('SELECT * FROM alarm', [], queryalarm, errorCB);
 
 }
+
 function avilable_size() {
 
 	db.transaction(getavailablesizes, errorCB);
@@ -386,7 +478,7 @@ function deletealarm(id) {
 	if (result == true) {
 		db.transaction(deletealarmdb, errorCB);
 		$('#alarm' + id).remove();
-		
+
 	}
 }
 
@@ -418,13 +510,13 @@ function deletealarmdb(tx) {
 function queryalarm(tx, result) {
 	//alert("goo");
 	$('#viewallalarms li').remove();
-	
+
 	for (var i = 0; i < result.rows.length; i++) {
 
 		$('#viewallalarms').append('<li id="alarm' + result.rows.item(i).id + '"><a href="#editalarmform" onclick="get_edited_alarm(' + result.rows.item(i).id + ')"><table width="100%"><tr><td><h2>' + result.rows.item(i).time + '</h2></td><td rowspan="2" style="float:left;"><a href="javascript:deletealarm(' + result.rows.item(i).id + ');"  data-role="button" data-icon="delete" data-iconpos="notext">Delete</a></td></tr><tr><td>' + result.rows.item(i).note + '</td></tr></table></a></li>');
 
 	}
-	
+
 	$("#viewallalarms").trigger('create');
 	$('#viewallalarms').listview('refresh');
 
