@@ -187,10 +187,25 @@ function editalarmdb(tx) {
 	if ($("#subtextedit").val() == "" || $("#textinput4edit").val() == "") {
 		alert("الرجاء ادخال جميع البيانات المطلوبة");
 	} else {
-
+		var text      = $("#subtextedit").val();
+		var dateSplit = $("#textinput4edit").val().split(':');
+		var date      = new Date();
+		date.setHours(dateSplit[0],dateSplit[1]);
+		
 		tx.executeSql('update alarm set note="' + $("#subtextedit").val() + '",time="' + $("#textinput4edit").val() + '" where id=' + editalarmid);
+		
+		plugins.localNotification.add({
+			date : date,
+			message : text,
+			ticker : "تذكير سيد انسولين",
+			repeatDaily : true,
+			id : editalarmid
+		});
+		
 		view_alarm();
 		alert("تم تعديل البيانات بنجاح");
+		
+		
 
 	}
 }
@@ -200,10 +215,30 @@ function addalarmdb(tx) {
 	if ($("#subtext").val() == "" || $("#textinput4").val() == "") {
 		alert("الرجاء ادخال جميع البيانات المطلوبة");
 	} else {
-
-		tx.executeSql('INSERT INTO alarm (note,time) VALUES ("' + $("#subtext").val() + '","' + $("#textinput4").val() + '")');
+		//tx.executeSql('INSERT INTO alarm (note,time) VALUES ("' + $("#subtext").val() + '","' + $("#textinput4").val() + '")');
+		var text      = $("#subtext").val();
+		var dateSplit = $("#textinput4").val().split(':');
+		var date      = new Date();
+		date.setHours(dateSplit[0],dateSplit[1]);
+		
+		tx.executeSql(
+            'INSERT INTO alarm (note,time) VALUES (?,?)',
+            [$("#subtext").val(),$("#textinput4").val()],
+            function(tx, results){
+                plugins.localNotification.add({
+	    			date : date,
+	    			message : text,
+	    			ticker : "تذكير سيد انسولين",
+	    			repeatDaily : true,
+	    			id : results.insertId
+				});
+            },
+            errorCB
+        );
+		
 		view_alarm();
 		alert("تم ادخال البيانات بنجاح");
+		
 		$("#subtext").val('');
 		$("#textinput4").val('');
 
@@ -478,7 +513,7 @@ function deletealarm(id) {
 	if (result == true) {
 		db.transaction(deletealarmdb, errorCB);
 		$('#alarm' + id).remove();
-
+		plugins.localNotification.cancel(id)
 	}
 }
 
