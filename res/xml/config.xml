@@ -105,5 +105,6 @@
     <plugins>
        <plugin name="EmailComposer" value="com.insulin.EmailComposer"/>
        <plugin name="DatePickerPlugin" value="com.insulin.DatePickerPlugin"/>
-         </plugins>
+        <plugin name="LocalNotification" value="com.phonegap.plugin.localnotification.LocalNotification" />
+      </plugins>
 </widget>
