@@ -11,8 +11,8 @@ var detetedalarmid = 0;
 var editalarmid = 0;
 hostname = "naemhd.webfactional.com";
 function onDeviceReady() {
-	db.transaction(checkuser, errorCB);
-	//db.transaction(checkuser, errorCB, successCB);
+	db.transaction(checkuser);
+	//db.transaction(checkuser , successCB);
 }
 
 function testemail() {
@@ -20,19 +20,19 @@ function testemail() {
 }
 
 function addinfo() {
-	db.transaction(populateDB, errorCB);
-	//db.transaction(populateDB, errorCB, successCB);
+	db.transaction(populateDB);
+	//db.transaction(populateDB , successCB);
 }
 
 // Populate the database
 //
 function senddata() {
 
-	db.transaction(senddatadb, errorCB);
+	db.transaction(senddatadb);
 }
 
 function senddatadb(tx) {
-	tx.executeSql('SELECT * FROM user_info', [], getuserinfo, errorCB);
+	tx.executeSql('SELECT * FROM user_info', [], getuserinfo );
 }
 
 function getuserinfo(tx, result) {
@@ -48,29 +48,29 @@ function getuserinfo(tx, result) {
 
 	dr_email = result.rows.item(0).dr_email;
 	if ($('#sendtype').val() == '1') {
-		tx.executeSql('SELECT * FROM insulin_sizes', [], querysend, errorCB);
+		tx.executeSql('SELECT * FROM insulin_sizes', [], querysend );
 	} else {
-		tx.executeSql('SELECT * FROM insulin_sizes where sent=\'0\'', [], querysend, errorCB);
+		tx.executeSql('SELECT * FROM insulin_sizes where sent=\'0\'', [], querysend );
 	}
 }
 
 function get_info() {
 
-	db.transaction(get_info_db, errorCB);
+	db.transaction(get_info_db );
 }
 
 function get_edited_alarm(id) {
 	editalarmid = id;
 
-	db.transaction(get_alarm_info_db, errorCB);
+	db.transaction(get_alarm_info_db );
 }
 
 function get_info_db(tx) {
-	tx.executeSql('SELECT * FROM user_info', [], geteditinfo, errorCB);
+	tx.executeSql('SELECT * FROM user_info', [], geteditinfo );
 }
 
 function get_alarm_info_db(tx) {
-	tx.executeSql('SELECT * FROM alarm where id=' + editalarmid, [], geteditalarminfo, errorCB);
+	tx.executeSql('SELECT * FROM alarm where id=' + editalarmid, [], geteditalarminfo );
 }
 
 function geteditinfo(tx, result) {
@@ -140,7 +140,7 @@ function querysend(tx, result) {
 		}).done(function(msg) {
 			if (msg == 1) {
 				alert("تم ارسال البريد الالكتروني");
-				db.transaction(updatesentdata, errorCB);
+				db.transaction(updatesentdata );
 			} else
 				alert("لم يتم الارسال");
 		});
@@ -153,7 +153,7 @@ function querysend(tx, result) {
 
 function addsize() {
 
-	db.transaction(addsizedb, errorCB);
+	db.transaction(addsizedb );
 }
 
 function get_date() {
@@ -174,12 +174,12 @@ function get_date() {
 
 function addalarm() {
 
-	db.transaction(addalarmdb, errorCB);
+	db.transaction(addalarmdb );
 }
 
 function editalarm() {
 
-	db.transaction(editalarmdb, errorCB);
+	db.transaction(editalarmdb );
 }
 
 function editalarmdb(tx) {
@@ -337,7 +337,7 @@ function populateDB(tx) {
 
 function editinfo() {
 
-	db.transaction(editinfo_db, errorCB);
+	db.transaction(editinfo_db );
 }
 
 function editinfo_db(tx) {
@@ -419,50 +419,50 @@ function errorCB(tx, err) {
 //
 function successCB() {
 	//alert("success!");
-	db.transaction(queryDB, errorCB);
+	db.transaction(queryDB );
 }
 
 function runadd() {
 	//alert("rub add!");
-	db.transaction(addrow, errorCB);
+	db.transaction(addrow );
 }
 
 function queryDB(tx) {
 	//	alert("select data!");
-	tx.executeSql('SELECT * FROM user_info', [], querySuccess, errorCB);
+	tx.executeSql('SELECT * FROM user_info', [], querySuccess );
 }
 
 function view_size() {
-	db.transaction(getsizes, errorCB);
+	db.transaction(getsizes );
 }
 
 function getsizes(tx) {
 	//alert("select data!");
 
-	tx.executeSql('SELECT * FROM insulin_sizes', [], querysizes, errorCB);
+	tx.executeSql('SELECT * FROM insulin_sizes', [], querysizes );
 
 }
 
 function view_alarm() {
-	db.transaction(getalarm, errorCB);
+	db.transaction(getalarm );
 }
 
 function getalarm(tx) {
 	//alert("select data!");
 
-	tx.executeSql('SELECT * FROM alarm', [], queryalarm, errorCB);
+	tx.executeSql('SELECT * FROM alarm', [], queryalarm );
 
 }
 
 function avilable_size() {
 
-	db.transaction(getavailablesizes, errorCB);
+	db.transaction(getavailablesizes );
 }
 
 function getavailablesizes(tx) {
 	//alert("select data!");
 
-	tx.executeSql("SELECT * FROM insulin_sizes where date='" + get_date() + "'", [], queryavailabesizes, errorCB);
+	tx.executeSql("SELECT * FROM insulin_sizes where date='" + get_date() + "'", [], queryavailabesizes );
 
 }
 
@@ -501,7 +501,7 @@ function deletesize(id) {
 	detetedid = id;
 	var result = confirm("هل انت  متأكد ؟");
 	if (result == true) {
-		db.transaction(deletesizedb, errorCB);
+		db.transaction(deletesizedb );
 		$('#size' + id).remove();
 		avilable_size();
 	}
@@ -511,7 +511,7 @@ function deletealarm(id) {
 	detetedalarmid = id;
 	var result = confirm("هل انت  متأكد ؟");
 	if (result == true) {
-		db.transaction(deletealarmdb, errorCB);
+		db.transaction(deletealarmdb );
 		$('#alarm' + id).remove();
 		plugins.localNotification.cancel(id)
 	}
@@ -521,7 +521,7 @@ function deleteallsizes(id) {
 
 	var result = confirm("هل انت  متأكد ؟");
 	if (result == true) {
-		db.transaction(deleteallsizedb, errorCB);
+		db.transaction(deleteallsizedb );
 		$('#viewallsizes li').remove();
 		avilable_size();
 	}
