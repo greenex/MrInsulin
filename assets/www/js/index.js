@@ -248,7 +248,7 @@ function addalarmdb(tx) {
 function addsizedb(tx) {
 	//alert($("#texttime").val());
 	var goo = true;
-	if ($("#textsize").val() == "" || $("#texttime").val() == "" || $("#cominnts").val() == "") {
+	if ($("#textsize").val() == "" || $("#texttime").val() == "") {
 		alert("الرجاء ادخال جميع البيانات المطلوبة");
 	}
 	var passedit = $("#textsize").val();
@@ -266,12 +266,23 @@ function addsizedb(tx) {
 			alert("تم ادخال البيانات بنجاح");
 			$("#textsize").val('');
 			$("#cominnts").val('');
-			if (datasize > 240) {
+			
+				
+			if (datasize > 250) {
 				alert("نسبة السكر مرتفعة");
-			}
-			if (datasize < 80) {
+				$("#insulinface").empty();
+				$("#insulinface").append('<img src="images/sad.gif" width="300"/>');
+				
+			}else if (datasize < 80) {
 				alert("نسبة السكر منخفضة");
+				$("#insulinface").empty();
+				$("#insulinface").append('<img src="images/sad.gif" width="300"/>');
+				
+			}else{
+				$("#insulinface").empty();
+				$("#insulinface").append('<img src="images/happy.gif" width="300"/>');
 			}
+			$("#insulinface").trigger('create');
 		}
 	}
 }
