@@ -7,8 +7,8 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<meta charset="UTF-8">
 		<meta name="format-detection" content="telephone-no">
-		 <meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
- 
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
+
 		<link rel="stylesheet" href="rtl.jquery.mobile-1.3.0.min.css" />
 		<link rel="stylesheet" href="css/index.css" />
 		<script src="js/jquery.js"></script>
@@ -18,14 +18,18 @@
 		<script src="js/LocalNotification.js"></script>
 		<script src="js/index.js"></script>
 		<script type="text/javascript" charset="utf-8"></script>
-		 <script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
-		 <script type="text/javascript" charset="utf-8" src="index.js"></script>
-		 
-		 <style>
-		 	#home{
-		 		background-color: #A9DDF1;
-		 	}
-		 </style>
+		<script type="text/javascript" charset="utf-8" src="datePickerPlugin.js"></script>
+		<script type="text/javascript" charset="utf-8" src="index.js"></script>
+
+		<style>
+			#home {
+				background-color: #A9DDF1;
+			}
+			#welcome {
+				background-image: url('images/bg.gif');
+				background-repeat: no-repeat;
+			}
+		</style>
 	</head>
 	<body>
 
@@ -34,51 +38,61 @@
 				<h1>القائمة الرئيسية</h1>
 			</div>
 			<div data-role="content">
+				<div id="welcome" style="display: none;">
+					<button onclick="view_form_info();">
+						التالي
+					</button>
+					<p>
+						سيد.انسولين .. هو تطبيق لأصدقائنا اطفال مرضى السكري وذوي الرعاية بهم
+						فـ  أهلاً ومرحباً بك معنا
+					</p>
+				</div>
 				<div  style="display: none;" id="info">
-				<table width="100%">
-					<tr>
-						<td>الاسم :</td><td>
-						<input type="text" id="name" />
-						</td><td><label style="color: red;">*</label></td>
-					</tr>
-					<tr>
-						<td>العمر :</td><td>
-						<input type="text" id="age" />
-						</td><td><label style="color: red;">*</label></td>
-					</tr>
-					<tr>
-						<td>الوزن :</td><td>
-						<input type="text" id="weight" />
-						</td><td><label style="color: red;">*</label>كغ</td>
-					</tr>
-					<tr>
-						<td>الطول :</td><td>
-						<input type="text" id="length" />
-						</td><td><label style="color: red;">*</label>سم</td>
-					</tr>
-					<tr>
-						<td>البريد الالكتروني :</td><td>
-						<input type="text" id="email" />
-						</td><td><label style="color: red;">*</label></td>
-					</tr>
-					<tr>
-						<td>رقم الجوال : </td><td>
-						<input type="text" id="pass" />
-						</td><td><label style="color: red;">*</label></td>
-					</tr>
-					<tr>
-						<td>البريد الالكتروني للدكتور :</td><td>
-						<input type="text" id="dr_email" />
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-						<input type="button"  id="add" onclick="addinfo();" value="ادخال"/>
-						</td>
-					</tr>
-				</table>
-				<p style="text-align: center;font-size: 14px;color:red;">
-					المعلومات المنشورة في هذا التطبيق لا تمثل إلاّ معلومات عامة ومادة تثقيفية يستفيد منها المصاب بالسكري في فهم حالته .. ولا يجوز استعمالها عوضاً عن استشارة الطبيب ومتابعة العلاج تحت إشرافه.</p>
+					<table width="100%">
+						<tr>
+							<td>الاسم :</td><td>
+							<input type="text" id="name" />
+							</td><td><label style="color: red;">*</label></td>
+						</tr>
+						<tr>
+							<td>العمر :</td><td>
+							<input type="text" id="age" />
+							</td><td><label style="color: red;">*</label></td>
+						</tr>
+						<tr>
+							<td>الوزن :</td><td>
+							<input type="text" id="weight" />
+							</td><td><label style="color: red;">*</label>كغ</td>
+						</tr>
+						<tr>
+							<td>الطول :</td><td>
+							<input type="text" id="length" />
+							</td><td><label style="color: red;">*</label>سم</td>
+						</tr>
+						<tr>
+							<td>البريد الالكتروني :</td><td>
+							<input type="text" id="email" />
+							</td><td><label style="color: red;">*</label></td>
+						</tr>
+						<tr>
+							<td>رقم الجوال : </td><td>
+							<input type="text" id="pass" />
+							</td><td><label style="color: red;">*</label></td>
+						</tr>
+						<tr>
+							<td>البريد الالكتروني للدكتور :</td><td>
+							<input type="text" id="dr_email" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+							<input type="button"  id="add" onclick="addinfo();" value="ادخال"/>
+							</td>
+						</tr>
+					</table>
+					<p style="text-align: center;font-size: 14px;color:red;">
+						المعلومات المنشورة في هذا التطبيق لا تمثل إلاّ معلومات عامة ومادة تثقيفية يستفيد منها المصاب بالسكري في فهم حالته .. ولا يجوز استعمالها عوضاً عن استشارة الطبيب ومتابعة العلاج تحت إشرافه.
+					</p>
 				</div>
 				<table width="100%" class="tablestyle"  style="display: none;" id="icons">
 					<tr>
@@ -107,7 +121,7 @@
 						<td class="iconstyle"><a href="#contactus" class="linktag"><img src="icons/contact.png" width="80"  />
 						<br />
 						تواصل معنا </a></td>
-					
+
 						<td class="iconstyle"><a href="#userinfo" class="linktag" onclick="get_info()"><img src="icons/userinfo.png" width="100"  />
 						<br />
 						معلومات المستخدم</a></td>
@@ -116,14 +130,14 @@
 				</table>
 			</div>
 		</div>
-		
+
 		<div data-role="page" id="userinfo">
 			<div data-role="header" data-position="fixed" data-theme="b">
 				<h1>معلومات المستخدم</h1>
 				<a href="#home" data-icon="back" data-iconpos="notext">الرئيسي</a>
 			</div>
 			<div data-role="content">
-				
+
 				<table width="100%" id="info">
 					<tr>
 						<td>الاسم :</td><td>
@@ -167,7 +181,8 @@
 					</tr>
 				</table>
 				<p style="text-align: center;font-size: 14px;color:red;">
-					المعلومات المنشورة في هذا التطبيق لا تمثل إلاّ معلومات عامة ومادة تثقيفية يستفيد منها المصاب بالسكري في فهم حالته .. ولا يجوز استعمالها عوضاً عن استشارة الطبيب ومتابعة العلاج تحت إشرافه.</p>
+					المعلومات المنشورة في هذا التطبيق لا تمثل إلاّ معلومات عامة ومادة تثقيفية يستفيد منها المصاب بالسكري في فهم حالته .. ولا يجوز استعمالها عوضاً عن استشارة الطبيب ومتابعة العلاج تحت إشرافه.
+				</p>
 			</div>
 		</div>
 		<div id="newsize" data-role="page">
@@ -217,7 +232,7 @@
 					</table>
 				</div>
 				<div style="text-align: center;" id="insulinface">
-					
+
 				</div>
 			</div>
 		</div>
@@ -245,17 +260,20 @@
 				</ul>
 			</div>
 			<div data-role="footer" class="ui-bar">
-				<table width="100%"><tr>
-	<td><select id='sendtype'>
-		<option value="1">جميع التسجيلات</option>
-		<option value="2">الغير مرسلة</option>
-	</select></td>
-	<td><a href="#" onclick="senddata();" data-role="button" data-icon="send">ارسال</a></td>
-	<td><a href="#" data-role="button" data-icon="delete" onclick="deleteallsizes();">حذف الكل</a></td>
-	</tr></table>
-</div>
+				<table width="100%">
+					<tr>
+						<td>
+						<select id='sendtype'>
+							<option value="1">جميع التسجيلات</option>
+							<option value="2">الغير مرسلة</option>
+						</select></td>
+						<td><a href="#" onclick="senddata();" data-role="button" data-icon="send">ارسال</a></td>
+						<td><a href="#" data-role="button" data-icon="delete" onclick="deleteallsizes();">حذف الكل</a></td>
+					</tr>
+				</table>
+			</div>
 		</div>
-		
+
 		<div id="newalarm" data-role="page">
 			<header data-role="header" data-position="fixed" data-theme="b">
 				<h1>المنبة</h1>
@@ -276,12 +294,19 @@
 					<table width="100%">
 						<tr>
 							<td>العنوان</td><td>
-							<input type="text" id="subtext" />
+							
+							<select id="subtext">
+								<option></option>
+								<option> مراجعة الطبيب</option>
+								<option>جرعة انسولين</option>
+								<option>قياس مستوى السكر</option>
+							</select>
 							</td>
 						</tr>
 						<tr>
 							<td>الوقت</td><td>
-							<input type="text" id = "textinput4" class="nativetimepicker" readonly value = ""/></td>
+							<input type="text" id = "textinput4" class="nativetimepicker" readonly value = ""/>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
@@ -293,23 +318,30 @@
 			</div>
 		</div>
 
-	<div id="editalarmform" data-role="page">
+		<div id="editalarmform" data-role="page">
 			<header data-role="header"  data-position="fixed" data-theme="b">
 				<h1>تعديل المنبة</h1>
 				<a href="#allalarmsdata" data-icon="back" data-iconpos="notext">المنبة</a>
-				
+
 			</header>
 			<div data-role="content">
 				<div id='addnewsize'>
 					<table width="100%">
 						<tr>
 							<td>العنوان</td><td>
-							<input type="text" id="subtextedit" />
+							
+							<select id="subtextedit">
+								<option id="subtexteditoption"></option>
+								<option> مراجعة الطبيب</option>
+								<option>جرعة انسولين</option>
+								<option>قياس مستوى السكر</option>
+							</select>
 							</td>
 						</tr>
 						<tr>
 							<td>الوقت</td><td>
-							<input type="text" id = "textinput4edit" class="nativetimepicker" readonly value = ""/></td>
+							<input type="text" id = "textinput4edit" class="nativetimepicker" readonly value = ""/>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
@@ -343,7 +375,7 @@
 					</li>
 				</ul>
 			</div>
-			
+
 		</div>
 		<div id="contactus" data-role="page">
 			<header data-role="header" data-position="fixed" data-theme="b">
@@ -351,64 +383,65 @@
 				<a href="#home" data-icon="back" data-iconpos="notext">الرئيسي</a>
 			</header>
 			<div data-role="content">
-				<p style="font-size: 20px;">اصدقاء سيد.انسولين .. نسعد باستقبال اقتراحاتكم واستفساراتكم عن طريق العناوين التالية : </p>
+				<p style="font-size: 20px;">
+					اصدقاء سيد.انسولين .. نسعد باستقبال اقتراحاتكم واستفساراتكم عن طريق العناوين التالية :
+				</p>
 				<table dir="rtl" style="padding-top: 30px;text-align: center;" width="100%">
-				<tr>
-					<td><img src="icons/email_icon.png" /></td><td><h2>Mr.insulinapp@gmail.com</h2></td>
-				</tr>
-				<tr>
-				<td><img src="icons/twitter_icon.png" /></td><td><h2>@Mr_Insulin</h2></td>
-				</tr>
+					<tr>
+						<td><img src="icons/email_icon.png" /></td><td><h2>Mr.insulinapp@gmail.com</h2></td>
+					</tr>
+					<tr>
+						<td><img src="icons/twitter_icon.png" /></td><td><h2>@Mr_Insulin</h2></td>
+					</tr>
 				</table>
 			</div>
-			
+
 		</div>
 		<script type = "text/javascript">
-$(document).ready(function(){
-    $('.nativedatepicker').focus(function(event) {
-            var currentField = $(this);
-            var myNewDate = new Date();
+			$(document).ready(function() {
+				$('.nativedatepicker').focus(function(event) {
+					var currentField = $(this);
+					var myNewDate = new Date();
 
-            // Same handling for iPhone and Android
-            window.plugins.datePicker.show({
-                date : myNewDate,
-                mode : 'date', // date or time or blank for both
-                allowOldDates : true
-            }, function(returnDate) {
-                var newDate = new Date(returnDate);
-                var newString = newDate.toString();
-                newString = newString.substring(0,15);
-                currentField.val(newString);
-                // This fixes the problem you mention at the bottom of this script with it not working a second/third time around, because it is in focus.
-                currentField.blur();
-            });
-        });
-       $('.nativetimepicker').focus(function(event) {
-		var currentField = $(this);
-		var time = currentField.val();
-		var myNewTime = new Date();
+					// Same handling for iPhone and Android
+					window.plugins.datePicker.show({
+						date : myNewDate,
+						mode : 'date', // date or time or blank for both
+						allowOldDates : true
+					}, function(returnDate) {
+						var newDate = new Date(returnDate);
+						var newString = newDate.toString();
+						newString = newString.substring(0, 15);
+						currentField.val(newString);
+						// This fixes the problem you mention at the bottom of this script with it not working a second/third time around, because it is in focus.
+						currentField.blur();
+					});
+				});
+				$('.nativetimepicker').focus(function(event) {
+					var currentField = $(this);
+					var time = currentField.val();
+					var myNewTime = new Date();
 
-		myNewTime.setHours(time.substr(0, 2));
-		myNewTime.setMinutes(time.substr(3, 2));
+					myNewTime.setHours(time.substr(0, 2));
+					myNewTime.setMinutes(time.substr(3, 2));
 
-		// Same handling for iPhone and Android
-		plugins.datePicker.show({
-			date : myNewTime,
-			mode : 'time', // date or time or blank for both
-			allowOldDates : true
-		}, function(returnDate) {
-		  // returnDate is generated by .toLocaleString() in Java so it will be relative to the current time zone
-			var newDate = new Date(returnDate);
-			var newString = newDate.toString();
-            newString = newString.substring(16,21);
-            currentField.val(newString);
+					// Same handling for iPhone and Android
+					plugins.datePicker.show({
+						date : myNewTime,
+						mode : 'time', // date or time or blank for both
+						allowOldDates : true
+					}, function(returnDate) {
+						// returnDate is generated by .toLocaleString() in Java so it will be relative to the current time zone
+						var newDate = new Date(returnDate);
+						var newString = newDate.toString();
+						newString = newString.substring(16, 21);
+						currentField.val(newString);
 
-			currentField.blur();
-		});
-	});
-});
- </script>
- 
+						currentField.blur();
+					});
+				});
+			});
+		</script>
 
 	</body>
 </html>

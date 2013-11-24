@@ -86,8 +86,11 @@ function geteditinfo(tx, result) {
 }
 
 function geteditalarminfo(tx, result) {
-
-	$("#subtextedit").val(result.rows.item(0).note);
+	
+	$("#subtexteditoption").html(result.rows.item(0).note);
+	
+	$("#subtextedit").trigger('create');
+	$("#subtexteditoption").trigger('create');
 	$("#textinput4edit").val(result.rows.item(0).time);
 
 }
@@ -99,7 +102,7 @@ function updatesentdata(tx) {
 function querysend(tx, result) {
 	var sentemail = false;
 	var myitems = new Array();
-	msgtextdata += '<table width="100%" border="1" dir="rtl"><tr><th><b>التاريخ </b></th><th><b>الوقت </b></th><th><b>القياس </b></th><th><b>ملاحضة</b></th></tr>';
+	msgtextdata += '<table width="100%" border="1"><tr><th><b>التاريخ </b></th><th><b>الوقت </b></th><th><b>القياس </b></th><th><b>ملاحضة</b></th></tr>';
 	for (var i = 0; i < result.rows.length; i++) {
 		var timedata = '';
 		if (result.rows.item(i).time == 1) {
@@ -345,7 +348,12 @@ function populateDB(tx) {
 		$("#icons").show();
 	}
 }
-
+function view_form_info () {
+	$('#home').css("background-image", "none");  
+	$('#home').css("background-color", "#A9DDF1");  
+  $("#welcome").hide();
+  $("#info").show();
+}
 function editinfo() {
 
 	db.transaction(editinfo_db );
@@ -412,7 +420,8 @@ function checkuser(tx) {
 	tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='user_info'", [], function(tx, result) {
 		if (result.rows.length == 0) {
 			//	alert("not excet");
-			$("#info").show();
+			$('#home').css("background-image", "url(images/bg.gif)");  
+			$("#welcome").show();
 		} else {
 			$("#icons").show();
 
