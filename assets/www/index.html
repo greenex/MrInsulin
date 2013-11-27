@@ -29,6 +29,24 @@
 				background-image: url('images/bg.gif');
 				background-repeat: no-repeat;
 			}
+			#sadfacebig {
+				background-image: url('images/sad.gif');
+				background-repeat: no-repeat;
+			}
+			#sadfaceless {
+				background-image: url('images/sad.gif');
+				background-repeat: no-repeat;
+			}
+			#happyface {
+				background-image: url('images/happy.gif');
+				background-repeat: no-repeat;
+			}
+		</style>
+		<style>
+			.iconfontstyle {
+				color: #323232;
+				font-family: Consolas;
+			}
 		</style>
 	</head>
 	<body>
@@ -39,13 +57,16 @@
 			</div>
 			<div data-role="content">
 				<div id="welcome" style="display: none;">
-					<button onclick="view_form_info();">
-						التالي
-					</button>
-					<p>
-						سيد.انسولين .. هو تطبيق لأصدقائنا اطفال مرضى السكري وذوي الرعاية بهم
-						فـ  أهلاً ومرحباً بك معنا
-					</p>
+					<div style="margin-top: 550px;;">
+
+						<p style="font-size: 20px;">
+							سيد.انسولين .. هو تطبيق لأصدقائنا اطفال مرضى السكري وذوي الرعاية بهم
+							فـ  أهلاً ومرحباً بك معنا
+						</p>
+						<button onclick="view_form_info();">
+							التالي
+						</button>
+					</div>
 				</div>
 				<div  style="display: none;" id="info">
 					<table width="100%">
@@ -95,36 +116,37 @@
 					</p>
 				</div>
 				<table width="100%" class="tablestyle"  style="display: none;" id="icons">
+					
 					<tr>
 						<td class="iconstyle"><a href="#newsize" class="linktag" onclick="view_size()"><img src="icons/chart.png" width="100"  />
 						<br />
-						قياسات السكر</a></td>
+						<b class="iconfontstyle"> قياسات السكر</b></a></td>
 						<td class="iconstyle"><a href="#newalarm" class="linktag" onclick="view_alarm()"><img src="icons/Alarm.png" width="100" />
 						<br />
-						المنبة</a></td>
+						<b class="iconfontstyle">المنبة </b></a></td>
 						<td class="iconstyle"><a href="food.html" rel="external" class="linktag"><img src="icons/food.png" width="100"  />
 						<br />
-						التغذية</a></td>
+						<b class="iconfontstyle">التغذية </b></a></td>
 					</tr>
 					<tr>
 						<td class="iconstyle"><a href="sport.html" rel="external" class="linktag"><img src="icons/sport.png" width="100"  />
 						<br />
-						رياضة</a></td>
+						<b class="iconfontstyle">رياضة </b></a></td>
 						<td class="iconstyle"><a href="general.html" rel="external" class="linktag"><img src="icons/info.png" width="100" />
 						<br />
-						نصائح عامة </a></td>
+						<b class="iconfontstyle">نصائح عامة </b></a></td>
 						<td class="iconstyle"><a href="questions.html" rel="external" class="linktag"><img src="icons/questions.png" width="100" />
 						<br />
-						اسئلة شائعة </a></td>
+						<b class="iconfontstyle">اسئلة شائعة </b></a></td>
 					</tr>
 					<tr>
 						<td class="iconstyle"><a href="#contactus" class="linktag"><img src="icons/contact.png" width="80"  />
 						<br />
-						تواصل معنا </a></td>
+						<b class="iconfontstyle">تواصل معنا </b></a></td>
 
 						<td class="iconstyle"><a href="#userinfo" class="linktag" onclick="get_info()"><img src="icons/userinfo.png" width="100"  />
 						<br />
-						معلومات المستخدم</a></td>
+						<b class="iconfontstyle">معلومات المستخدم </b></a></td>
 					</tr>
 
 				</table>
@@ -294,14 +316,12 @@
 					<table width="100%">
 						<tr>
 							<td>العنوان</td><td>
-							
 							<select id="subtext">
 								<option></option>
 								<option> مراجعة الطبيب</option>
 								<option>جرعة انسولين</option>
 								<option>قياس مستوى السكر</option>
-							</select>
-							</td>
+							</select></td>
 						</tr>
 						<tr>
 							<td>الوقت</td><td>
@@ -329,14 +349,12 @@
 					<table width="100%">
 						<tr>
 							<td>العنوان</td><td>
-							
 							<select id="subtextedit">
 								<option id="subtexteditoption"></option>
 								<option> مراجعة الطبيب</option>
 								<option>جرعة انسولين</option>
 								<option>قياس مستوى السكر</option>
-							</select>
-							</td>
+							</select></td>
 						</tr>
 						<tr>
 							<td>الوقت</td><td>
@@ -386,7 +404,7 @@
 				<p style="font-size: 20px;">
 					اصدقاء سيد.انسولين .. نسعد باستقبال اقتراحاتكم واستفساراتكم عن طريق العناوين التالية :
 				</p>
-				<table dir="rtl" style="padding-top: 30px;text-align: center;" width="100%">
+				<table dir="ltr" style="padding-top: 30px;text-align: center;" width="100%">
 					<tr>
 						<td><img src="icons/email_icon.png" /></td><td><h2>Mr.insulinapp@gmail.com</h2></td>
 					</tr>
@@ -397,6 +415,58 @@
 			</div>
 
 		</div>
+		<div id="sadfaceless" data-role="page">
+			<header data-role="header" data-position="fixed" data-theme="b">
+				<h1>النتيجة</h1>
+				<a href="#newsize" data-icon="back" data-iconpos="notext">القياسات</a>
+			</header>
+			<div data-role="content">
+				<embed name="lostmojo" src="music.mp3" hidden="true" loop="false" autostart="false">
+				<p style="font-size: 25px;color: red;text-align: center;">نسبة السكر منخفضة</p>
+			</div>
+
+		</div>
+		<div id="sadfacebig" data-role="page">
+			<header data-role="header" data-position="fixed" data-theme="b">
+				<h1>النتيجة</h1>
+				<a href="#newsize" data-icon="back" data-iconpos="notext">القياسات</a>
+			</header>
+			<div data-role="content">
+				<embed name="lostmojo" src="music.mp3" hidden="true" loop="false" autostart="false">
+				<p style="font-size: 25px;color: red;text-align: center;">نسبة السكر مرتفعة</p>
+			</div>
+
+		</div>
+		<div id="happyface" data-role="page">
+			<header data-role="header" data-position="fixed" data-theme="b">
+				<h1>النتيجة</h1>
+				<a href="#newsize" data-icon="back" data-iconpos="notext">القياسات</a>
+			</header>
+			<div data-role="content">
+				<embed name="lostmojo" src="music.mp3" hidden="true" loop="false" autostart="false">
+			</div>
+
+		</div>
+		<script>
+			function playAudio(src) {
+				if (device.platform == 'Android') {
+					src = '/android_asset/www/' + src;
+				}
+
+				var media = new Media(src, success, error_error);
+
+				media.play();
+			}
+			
+			function success() {
+				// ignore
+			}
+
+			function error_error(e) {
+				alert('great error');
+				alert(e.message);
+			}
+		</script>
 		<script type = "text/javascript">
 			$(document).ready(function() {
 				$('.nativedatepicker').focus(function(event) {

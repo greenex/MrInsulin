@@ -272,18 +272,15 @@ function addsizedb(tx) {
 			
 				
 			if (datasize > 250) {
-				alert("نسبة السكر مرتفعة");
-				$("#insulinface").empty();
-				$("#insulinface").append('<img src="images/sad.gif" width="300"/>');
-				
+				$.mobile.changePage( "#sadfacebig", { transition: "pop", changeHash: true });
+				playAudio('sad.mp3');
 			}else if (datasize < 80) {
-				alert("نسبة السكر منخفضة");
-				$("#insulinface").empty();
-				$("#insulinface").append('<img src="images/sad.gif" width="300"/>');
-				
+				$.mobile.changePage( "#sadfaceless", { transition: "pop", changeHash: true });
+				playAudio('sad.mp3');
 			}else{
 				$("#insulinface").empty();
-				$("#insulinface").append('<img src="images/happy.gif" width="300"/>');
+				$.mobile.changePage( "#happyface", { transition: "pop", changeHash: true });
+				playAudio('happy.mp3');
 			}
 			$("#insulinface").trigger('create');
 		}
@@ -582,7 +579,7 @@ function querysizes(tx, result) {
 	$('#viewallsizes li').remove();
 	$('#texttime').empty();
 	var myitems = new Array();
-	$('#viewallsizes').append('<li><table width="100%"><tr><th><b>التاريخ </b></th><th><b>الوقت </b></th><th><b>القياس </b></th><th><b>حذف</b></th></tr></table></li>');
+	$('#viewallsizes').append('<li><table width="100%"><tr><th style="padding-right:30px;"><b>التاريخ </b></th><th style="padding-right:28px;"><b>الوقت </b></th><th><b>القياس </b></th><th><b>حذف</b></th></tr></table></li>');
 	for (var i = 0; i < result.rows.length; i++) {
 		var timedata = '';
 		if (result.rows.item(i).time == 1) {

@@ -7,7 +7,8 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<meta charset="UTF-8">
 		<meta name="format-detection" content="telephone-no">
-		<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, ">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
+
 		<link rel="stylesheet" href="rtl.jquery.mobile-1.3.0.min.css" />
 		<link rel="stylesheet" href="css/index.css" />
 		<script src="js/jquery.js"></script>
@@ -37,7 +38,7 @@
 					<li>
 						<a href="#q3">نظام غذائي (مقترح) </a>
 					</li>
-					
+
 				</ul>
 			</div>
 		</div>
@@ -113,103 +114,227 @@
 				<a href="#questions" data-icon="back" data-iconpos="notext">الاسئلة</a>
 			</div>
 			<div data-role="content">
-				<table width="100%" style="text-align: center;" border="1">
-					<tr>
-						<th>المجموعة</th><th colspan="8">البدائل الغذائية</th>
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الحليب قليل الدسم 120 سعر حراري</td>
-						<td colspan="2">كوب حليب قليل الدسم</td>
-						<td colspan="2">كوب زبادي قليل الدسم</td>
+				<ul data-role="listview"   data-filter="true" id='viewallsizes'>
+					<li>
+						<a href="#ch1">مجموعة الحليب 120 سعر حراري</a>
+					</li>
+					<li>
+						<a href="#ch2">مجموعة اللحوم 75 سعر حراري</a>
+					</li>
+					<li>
+						<a href="#ch3">مجموعة الخضار 25 سعر حراري</a>
+					</li>
+					<li>
+						<a href="#ch4">مجموعة الفواكة 60 سعر حراري</a>
+					</li>
+					<li>
+						<a href="#ch5">مجموعة الخبز والنشويات 80 سعر حراري</a>
+					</li>
+					<li>
+						<a href="#ch6">مجموعة الدهون 45 سعر حراري</a>
+					</li>
 
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة اللحوم 75 سعر حراري</td>
-						<td>30جم لحم</td>
-						<td>30 جم سمك</td>
-						<td>30 جم دجاج</td>
-						<td>30 جم جبن</td>
+				</ul>
 
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الخضار 25 سعر حراري</td>
-						<td>2\1 كوب باميا</td>
-						<td>نصف كوب قرع</td>
-						<td>2\1  كوب جزر</td>
-						<td>نصف كوب باذنجان </td>
+			</div>
+		</div>
+		<div data-role="page" id="ch1">
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<h1>البدائل الغذائية</h1>
+				<a href="#q2" data-icon="back" data-iconpos="notext">الاسئلة</a>
+			</div>
+			<div data-role="content">
 
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الفواكة 60 سعر حراري</td>
-						<td colspan="2">حبة فاكهة متوسطة (تفاحه,برتقالة,كمثرى,جوافة,...)</td>
-						<td colspan="2">حبة كبيرة يوسفي أو خوخ أو كيوي</td>
+				<p style="font-size: 30px;color: blue;text-align: center;">
+					<h2>البدائل الغذائية</h2>
+					<br />
+					<br />
 
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الخبز والنشويات 80 سعر حراري</td>
-						<td colspan="2">2\1 كوب مكرونة او ارز او مرقوق او جريش او قرصان</td>
-						<td>4\1 رغيف خبز متوسط</td>
-						<td>شريحة توست</td>
+					- كوب حليب قليل الدسم
+					<br />
+					<br />
+					- كوب زبادي قليل الدسم
+					<br />
+					<br />
+					- كوب لبن قليل الدسم
+					<br />
+					<br />
+					- 2 ملعقة طعام حليب مجفف قليل الدسم
 
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الدهون 45 سعر حراري</td>
+				</p>
+			</div>
+		</div>
+		<div data-role="page" id="ch2">
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<h1>البدائل الغذائية</h1>
+				<a href="#q2" data-icon="back" data-iconpos="notext">الاسئلة</a>
+			</div>
+			<div data-role="content">
 
-						<td colspan="2">ملعقة صغيرة زبدة</td>
-						<td>5 حبات زيتون</td>
-						<td>7 حبات فول سوداني او لوز</td>
+				<p style="font-size: 30px;color: blue;text-align: center;">
+					<h2>البدائل الغذائية</h2>
+					<br />
+					<br />
 
-					</tr>
-				</table>
-				<br />
-				<table width="100%" style="text-align: center;" border="1">
-					<tr>
-						<th>المجموعة</th><th colspan="4">البدائل الغذائية</th>
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الحليب قليل الدسم 120 سعر حراري</td>
+					- 30جم لحم
+					<br />
+					<br />
+					- 30 جم سمك
+					<br />
+					<br />
+					- 30 جم دجاج
+					<br />
+					<br />
+					- 30 جم جبن
+					<br />
+					<br />
+					- بيضة
+					<br />
+					<br />
+					- 2
+					ملعقة مائدة لبنة
+					<br />
+					<br />
+					- 4ملاعق فول,حمص,عدس
+					<br />
+					<br />
+					- 4\1 كوب تونا
 
-						<td colspan="2">كوب لبن قليل الدسم</td>
-						<td colspan="2">2 ملعقة طعام حليب مجفف قليل الدسم</td>
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة اللحوم 75 سعر حراري</td>
+				</p>
+			</div>
+		</div>
+		<div data-role="page" id="ch3">
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<h1>البدائل الغذائية</h1>
+				<a href="#q2" data-icon="back" data-iconpos="notext">الاسئلة</a>
+			</div>
+			<div data-role="content">
 
-						<td>بيضة</td>
-						<td>2ملعقة مائدة لبنة</td>
-						<td>4ملاعق فول,حمص,عدس</td>
-						<td>4\1 كوب تونا</td>
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الخضار 25 سعر حراري</td>
+				<p style="font-size: 30px;color: blue;text-align: center;">
+					<h2>البدائل الغذائية</h2>
+					<br />
+					<br />
 
-						<td>2\1 كوب كوسة</td>
-						<td>2\1  كوب قرنبيط</td>
-						<td>2\1  كوب عصير خضار</td>
-						<td>كوب خضار طازج</td>
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الفواكة 60 سعر حراري</td>
+					- 2\1 كوب باميا
+					<br />
+					<br />
+					- نصف كوب قرع
+					<br />
+					<br />
+					- 2\1  كوب جزر
+					<br />
+					<br />
+					- نصف كوب باذنجان
+					<br />
+					<br />
+					- 2\1 كوب كوسة
+					<br />
+					<br />
+					- 2\1  كوب قرنبيط
+					<br />
+					<br />
+					- 2\1  كوب عصير خضار
+					<br />
+					<br />
+					- كوب خضار طازج
 
-						<td>حبة موز صغيرة</td>
-						<td>2\1 كوب عصير طازج</td>
-						<td>12 حبة عنب او كرز</td>
-						<td>3 حبات تمر</td>
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الخبز والنشويات 80 سعر حراري</td>
+				</p>
+			</div>
+		</div>
+		<div data-role="page" id="ch4">
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<h1>البدائل الغذائية</h1>
+				<a href="#q2" data-icon="back" data-iconpos="notext">الاسئلة</a>
+			</div>
+			<div data-role="content">
 
-						<td>2\1 خبز صامولي</td>
-						<td>2\1 خبز برجر</td>
-						<td> اصبع شابورة او 4 قطع خبز غير محلى</td>
-						<td>حبة بطاطس صغيرة</td>
-					</tr>
-					<tr>
-						<td style="color: blue;">مجموعة الدهون 45 سعر حراري</td>
-						<td colspan="3">ملعقة صغير(5 جم) زيت نباتي مثل (زيت الزيتون أو الذرة او الشمس)</td>
-						<td>ملعقة قشطة</td>
-					</tr>
-				</table>
+				<p style="font-size: 30px;color: blue;text-align: center;">
+					<h2>البدائل الغذائية</h2>
+					<br />
+					<br />
+
+					- حبة فاكهة متوسطة (تفاحه,برتقالة,كمثرى,جوافة,...)
+					<br />
+					<br />
+					- نبة كبيرة يوسفي أو خوخ أو كيوي
+					<br />
+					<br />
+					- حبة موز صغيرة
+					<br />
+					<br />
+					- 2\1 كوب عصير طازج
+					<br />
+					<br />
+					- 12 حبة عنب او كرز
+					<br />
+					<br />
+					- 3 حبات تمر
+					
+				</p>
+			</div>
+		</div>
+		<div data-role="page" id="ch5">
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<h1>البدائل الغذائية</h1>
+				<a href="#q2" data-icon="back" data-iconpos="notext">الاسئلة</a>
+			</div>
+			<div data-role="content">
+
+				<p style="font-size: 30px;color: blue;text-align: center;">
+					<h2>البدائل الغذائية</h2>
+					<br />
+					<br />
+
+					- 2\1 كوب مكرونة او ارز او مرقوق او جريش او قرصان
+					<br />
+					<br />
+					- 4\1 رغيف خبز متوسط
+					<br />
+					<br />
+					- شريحة توست
+					<br />
+					<br />
+					- 2\1 خبز صامولي
+					<br />
+					<br />
+					- 2\1 خبز برجر
+					<br />
+					<br />
+					- 2 اصبع شابورة او 4 قطع خبز غير محلى
+					<br />
+					<br />
+					- حبة بطاطس صغيرة
+					
+				</p>
+			</div>
+		</div>
+		<div data-role="page" id="ch6">
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<h1>البدائل الغذائية</h1>
+				<a href="#q2" data-icon="back" data-iconpos="notext">الاسئلة</a>
+			</div>
+			<div data-role="content">
+
+				<p style="font-size: 30px;color: blue;text-align: center;">
+					<h2>البدائل الغذائية</h2>
+					<br />
+					<br />
+
+					- ملعقة صغير(5 جم) زيت نباتي مثل (زيت الزيتون أو الذرة او الشمس
+					<br />
+					<br />
+					- ملعقة صغيرة زبدة
+					<br />
+					<br />
+					- 5 حبات زيتون
+					<br />
+					<br />
+					- 7 حبات فول سوداني او لوز
+					<br />
+					<br />
+					- ملعقة قشطة
+					
+				</p>
 			</div>
 		</div>
 		<div data-role="page" id="q3">
@@ -410,7 +535,7 @@
 					</tr>
 					<tr>
 						<td>الفواكة 2</td>
-						<td>كوب عصير برتقال أو تفاح أو اناناس بدون سكر  </td>
+						<td>كوب عصير برتقال أو تفاح أو اناناس بدون سكر </td>
 					</tr>
 					<tr>
 						<td>النشويات 2\1</td>
@@ -507,7 +632,7 @@
 					</tr>
 					<tr>
 						<td>اللحوم 2\1</td>
-						<td>2\1 ملعقة كبيرة تونة لعمل ساندويش  </td>
+						<td>2\1 ملعقة كبيرة تونة لعمل ساندويش </td>
 					</tr>
 
 				</table>
