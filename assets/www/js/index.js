@@ -251,8 +251,11 @@ function addalarmdb(tx) {
 function addsizedb(tx) {
 	//alert($("#texttime").val());
 	var goo = true;
-	if ($("#textsize").val() == "" || $("#texttime").val() == "") {
+	var textcheck=$("#textsize").val();
+	textcheck=textcheck.trim();
+	if (textcheck == "" || $("#texttime").val() == "") {
 		alert("الرجاء ادخال جميع البيانات المطلوبة");
+		goo = false;
 	}
 	var passedit = $("#textsize").val();
 	if (isNaN(passedit) && goo) {
@@ -271,10 +274,10 @@ function addsizedb(tx) {
 			$("#cominnts").val('');
 			
 				
-			if (datasize > 250) {
+			if (datasize >= 250) {
 				$.mobile.changePage( "#sadfacebig", { transition: "pop", changeHash: true });
 				playAudio('sad.mp3');
-			}else if (datasize < 80) {
+			}else if (datasize <= 80) {
 				$.mobile.changePage( "#sadfaceless", { transition: "pop", changeHash: true });
 				playAudio('sad.mp3');
 			}else{
