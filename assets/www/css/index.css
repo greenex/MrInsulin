@@ -56,7 +56,17 @@
 			
 		}
 		.iconstyle{
-			padding: 15px;
+			
+			position: absolute;
+		}
+		.firstrow{
+			margin-right: 10px;
+		}
+		.secundrow{
+			margin-right: 100px;
+		}
+		.therdrow{
+			margin-right: 200px;
 		}
 		.tablestyle{
 			

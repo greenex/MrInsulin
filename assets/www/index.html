@@ -7,8 +7,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<meta charset="UTF-8">
 		<meta name="format-detection" content="telephone-no">
-		<meta name="viewport" content="user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi">
-
+		<meta name="viewport" content="user-scalable=no, initial-scale=0.75, maximum-scale=1, minimum-scale=0.75, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
 		<link rel="stylesheet" href="rtl.jquery.mobile-1.3.0.min.css" />
 		<link rel="stylesheet" href="css/index.css" />
 		<script src="js/jquery.js"></script>
@@ -22,6 +21,12 @@
 		<script type="text/javascript" charset="utf-8" src="index.js"></script>
 
 		<style>
+			html, body {
+				width: 100%;
+				height: 100%;
+				padding: 0;
+				margin: 0;
+			}
 			#home {
 				background-color: #A9DDF1;
 			}
@@ -45,7 +50,7 @@
 		<style>
 			.iconfontstyle {
 				color: #323232;
-				font-family: Consolas;
+				
 			}
 		</style>
 	</head>
@@ -115,39 +120,40 @@
 						المعلومات المنشورة في هذا التطبيق لا تمثل إلاّ معلومات عامة ومادة تثقيفية يستفيد منها المصاب بالسكري في فهم حالته .. ولا يجوز استعمالها عوضاً عن استشارة الطبيب ومتابعة العلاج تحت إشرافه.
 					</p>
 				</div>
-				<table width="100%" class="tablestyle"  style="display: none;" id="icons">
-					
-					<tr>
-						<td class="iconstyle"><a href="#newsize" class="linktag" onclick="view_size()"><img src="icons/chart.png" width="100"  />
-						<br />
-						<b class="iconfontstyle"> قياسات السكر</b></a></td>
-						<td class="iconstyle"><a href="#newalarm" class="linktag" onclick="view_alarm()"><img src="icons/Alarm.png" width="100" />
-						<br />
-						<b class="iconfontstyle">المنبة </b></a></td>
-						<td class="iconstyle"><a href="food.html" rel="external" class="linktag"><img src="icons/food.png" width="100"  />
-						<br />
-						<b class="iconfontstyle">التغذية </b></a></td>
-					</tr>
-					<tr>
-						<td class="iconstyle"><a href="sport.html" rel="external" class="linktag"><img src="icons/sport.png" width="100"  />
-						<br />
-						<b class="iconfontstyle">رياضة </b></a></td>
-						<td class="iconstyle"><a href="general.html" rel="external" class="linktag"><img src="icons/info.png" width="100" />
-						<br />
-						<b class="iconfontstyle">نصائح عامة </b></a></td>
-						<td class="iconstyle"><a href="questions.html" rel="external" class="linktag"><img src="icons/questions.png" width="100" />
-						<br />
-						<b class="iconfontstyle">اسئلة شائعة </b></a></td>
-					</tr>
-					<tr>
-						<td class="iconstyle"><a href="#contactus" class="linktag"><img src="icons/contact.png" width="80"  />
-						<br />
-						<b class="iconfontstyle">تواصل معنا </b></a></td>
+				<div class="tablestyle"  style="display: none;" id="icons">
 
-						<td class="iconstyle"><a href="#userinfo" class="linktag" onclick="get_info()"><img src="icons/userinfo.png" width="100"  />
+					<div>
+						
+						<p class="iconstyle firstrow"><a href="#newalarm" class="linktag" onclick="view_alarm()"><img src="icons/Alarm.png" width="80" />
 						<br />
-						<b class="iconfontstyle">معلومات المستخدم </b></a></td>
-					</tr>
+						<b class="iconfontstyle">المنبة </b></a></p>
+						<p class="iconstyle secundrow"><a href="food.html" rel="external" class="linktag"><img src="icons/food.png" width="80"  />
+						<br />
+						<b class="iconfontstyle">التغذية </b></a></p>
+						<p class="iconstyle therdrow"><a href="#newsize" class="linktag" onclick="view_size()"><img src="icons/chart.png" width="80"  />
+						<br />
+						<b class="iconfontstyle"> قياسات السكر</b></a></p>
+					</div>
+					<div style="padding-top: 160px;">
+						<p class="iconstyle firstrow"><a href="sport.html" rel="external" class="linktag"><img src="icons/sport.png" width="80"  />
+						<br />
+						<b class="iconfontstyle">رياضة </b></a></p>
+						<p class="iconstyle secundrow"><a href="general.html" rel="external" class="linktag"><img src="icons/info.png" width="80" />
+						<br />
+						<b class="iconfontstyle">نصائح عامة </b></a></p>
+						<p class="iconstyle therdrow"><a href="questions.html" rel="external" class="linktag"><img src="icons/questions.png" width="80" />
+						<br />
+						<b class="iconfontstyle">اسئلة شائعة </b></a></p>
+					</div>
+					<div style="padding-top: 160px;">
+						<p class="iconstyle firstrow"><a href="#contactus" class="linktag"><img src="icons/contact.png" width="80"  />
+						<br />
+						<b class="iconfontstyle">تواصل معنا </b></a></p>
+
+						<p class="iconstyle secundrow" style="margin-right: 120px;"><a href="#userinfo" class="linktag" onclick="get_info()"><img src="icons/userinfo.png" width="80"  />
+						<br />
+						<b class="iconfontstyle">معلومات  <br />  المستخدم </b></a></p>
+					</div>
 
 				</table>
 			</div>
@@ -457,14 +463,14 @@
 
 				media.play();
 			}
-			
+
 			function success() {
 				// ignore
 			}
 
 			function error_error(e) {
 				alert('great error');
-				
+
 			}
 		</script>
 		<script type = "text/javascript">
